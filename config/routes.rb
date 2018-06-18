@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   resources :image_posts
 
   root 'image_posts#index'
+
+  resources :feedbacks, only: [:new]
 end
