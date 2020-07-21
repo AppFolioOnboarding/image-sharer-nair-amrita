@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+until Post.count == 20 
+    num = Post.count+1;
+    p = Post.create(
+      title: "Image"+num.to_s,
+      image: "https://picsum.photos/400/300"
+    )
+    # p.image.attach(io: File.open('https://picsum.photos/400/300'), filename: 'file.jpg')
+
+end
