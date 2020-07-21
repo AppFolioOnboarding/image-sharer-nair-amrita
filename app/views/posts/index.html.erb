@@ -1,8 +1,13 @@
+<h1>Welcome to the Image Sharing App</h1>
+
+<br />
+<%= link_to("Click here to post a new image", new_post_path) %>
+<br /> <br/>
 <% if @posts.any? %>
     <% @posts.order("created_at DESC").each do |post| %>
         <%= post.title %>
         <br/>
-        <%= image_tag(post.image,height: 300, width: 300) if post.image.attached? %>
+        <%= image_tag(post.image,width: 400) if post.image.attached? %>
         <br/>
     <% end %>
 <% else%>
