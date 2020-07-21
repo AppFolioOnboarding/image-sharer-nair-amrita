@@ -1,1 +1,10 @@
-<h3>The file was not uploaded as the file type was not an image</h3>
+<% if @posts.any? %>
+    <% @posts.order("created_at DESC").each do |post| %>
+        <%= post.title %>
+        <br/>
+        <%= image_tag(post.image,height: 300, width: 300) if post.image.attached? %>
+        <br/>
+    <% end %>
+<% else%>
+    <h3>No imaged posted so far!</h3>   
+<%end%> 

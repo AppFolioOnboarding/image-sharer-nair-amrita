@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   end
 
   def index
+    @posts = Post.all
     render :index
   end
 
