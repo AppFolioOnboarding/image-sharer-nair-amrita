@@ -83,17 +83,17 @@ jobs:
 
             bundle exec rake test
 
-      # - run:
-      #     name: run react tests
-      #     command: npm run test
+      - run:
+          name: run react tests
+          command: npm run test
 
       - run:
           name: run rubocop
           command: bundle exec rubocop
 
-      # - run:
-      #     name: run eslint
-      #     command: npm run lint
+      - run:
+          name: run eslint
+          command: npm run lint
 
       # collect reports
       - store_test_results:
