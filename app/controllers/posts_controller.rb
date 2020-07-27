@@ -19,8 +19,6 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     if @post.save
       redirect_to @post
-      # redirect_to post_path(@post)
-      # redirect_to "/posts/#{@post.id}"
     else
       render :new
     end
