@@ -1,4 +1,4 @@
-class ImagePostController < ApplicationController
+class ImagePostsController < ApplicationController
   def new
     @post = Post.new
     render :new
