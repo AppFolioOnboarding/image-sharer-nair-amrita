@@ -1,22 +1,22 @@
 class ImagePostsController < ApplicationController
   def new
-    @post = Post.new
+    @post = ImagePost.new
     render :new
   end
 
   def index
-    @posts = Post.all
+    @posts = ImagePost.all
     render :index
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = ImagePost.find(params[:id])
 
     render :show
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = ImagePost.new(post_params)
     if @post.save
       redirect_to @post
     else
@@ -27,6 +27,6 @@ class ImagePostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :image)
+    params.require(:image_post).permit(:title, :image)
   end
 end
