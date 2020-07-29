@@ -36,6 +36,16 @@ class ImagePostsController < ApplicationController
              end
   end
 
+  def destroy
+    @post = ImagePost.find_by(id: params[:id])
+    if @post
+      @post.destroy
+    else
+      flash[:error] = 'Error! Post does not exist!'
+    end
+    redirect_to posts_path
+  end
+
   private
 
   def post_params
