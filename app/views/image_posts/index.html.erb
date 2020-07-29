@@ -2,3 +2,13 @@
 <br />
 <%= link_to("Click here to post a new image", new_image_post_path) %>
 <br /> <br/>
+<% if @posts.any? %>
+    <% @posts.order("created_at DESC").each do |post| %>
+        <%= post.title %>
+        <br/>
+        <%= image_tag(post.image,width: 400) if post.image.attached? %>
+        <br/>
+    <% end %>
+<% else%>
+    <h3>No images posted so far!</h3>
+<%end%>
