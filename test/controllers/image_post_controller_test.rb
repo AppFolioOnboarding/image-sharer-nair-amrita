@@ -59,25 +59,27 @@ class ImagePostControllerTest < ActionDispatch::IntegrationTest
 
   test 'delete an existing post' do
     file = fixture_file_upload(Rails.root.join('public', 'images.jpeg'), 'image/jpeg')
-    post1 = ImagePost.create!(title: 'Newest', created_at: Time.zone.now, image: file,
-                         tag_list: 'tag_1, tag_2')
+    ImagePost.create!(title: 'Newest', created_at: Time.zone.now, image: file,
+                      tag_list: 'tag_1, tag_2')
     assert_difference 'ImagePost.count', -1 do
-      delete post_path(ImagePost.last.id)
+      delete image_post_path(ImagePost.last.id)
     end
 
-    assert_redirected_to posts_path
+    assert_redirected_to image_posts_path
+    assert_equal 'Image successfully deleted!', flash[:success]
     follow_redirect!
     assert_response :success
   end
 
   test 'error when attempting to delete an already deleted post' do
     file = fixture_file_upload(Rails.root.join('public', 'images.jpeg'), 'image/jpeg')
-    post1 = ImagePost.create!(title: 'Newest', created_at: Time.zone.now, image: file,
-                         tag_list: 'tag_1, tag_2')
+    ImagePost.create!(title: 'Newest', created_at: Time.zone.now, image: file,
+                      tag_list: 'tag_1, tag_2')
     deleted_id = ImagePost.last.id
     delete image_post_path(deleted_id)
     assert_no_difference 'ImagePost.count' do
       delete image_post_path(deleted_id)
+      assert_equal 'Error! Post does not exist!', flash[:danger]
     end
   end
 
