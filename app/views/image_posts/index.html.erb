@@ -2,6 +2,12 @@
 <br />
 <%= link_to("Click here to post a new image", new_image_post_path) %>
 <br /> <br/>
+<% flash.each do |type, msg| %>
+      <div class="alert alert-<%=type%>">
+        <%= msg %>
+      </div>
+    <% end %>
+
 <% if @posts.any? %>
     <% @posts.order("created_at DESC").each do |post| %>
         <%= post.title %>

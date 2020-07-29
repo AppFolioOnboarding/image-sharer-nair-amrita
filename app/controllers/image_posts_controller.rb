@@ -41,9 +41,10 @@ class ImagePostsController < ApplicationController
     if @post
       @post.destroy
     else
-      flash[:error] = 'Error! Post does not exist!'
+      flash[:danger] = 'Error! Post does not exist!'
     end
-    redirect_to posts_path
+    redirect_to image_posts_path
+    flash[:success] = 'Image successfully deleted!'
   end
 
   private
