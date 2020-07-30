@@ -24,9 +24,17 @@ class ImagePostsController < ApplicationController
     end
   end
 
+  def tagged
+    @posts = if params[:tag].present?
+               ImagePost.tagged_with(params[:tag])
+             else
+               ImagePost.all
+             end
+  end
+
   private
 
   def post_params
-    params.require(:image_post).permit(:title, :image)
+    params.require(:image_post).permit(:title, :image, :tag_list)
   end
 end

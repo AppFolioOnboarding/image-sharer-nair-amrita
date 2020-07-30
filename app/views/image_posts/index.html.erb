@@ -6,6 +6,8 @@
     <% @posts.order("created_at DESC").each do |post| %>
         <%= post.title %>
         <br/>
+        <h5 id="tags">Tags: <%= post.tag_list %></h5>
+        <br/>
         <%= image_tag(post.image,width: 400) if post.image.attached? %>
         <br/>
     <% end %>

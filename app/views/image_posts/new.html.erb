@@ -9,12 +9,15 @@
 
 <%= form_for @post do |form| %>
   <p>
-    <%= form.label :title %><br>
+    <%= form.label :title %>
     <%= form.text_field :title %>
   </p>
-
   <p>
-    <%= form.label :image %><br>
+    <%= form.label :tags %>
+    <%= form.text_field :tag_list %>
+  </p>
+  <p>
+    <%= form.label :image %>
     <%= form.file_field :image %>
   </p>
 
