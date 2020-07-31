@@ -3,7 +3,11 @@
 <strong>Title:</strong>
 <%= @post.title %>
 </p>
-<h5 id="tags">Tags: <%= @post.tag_list %></h5>
+
+<h5 class="tag-list">Tags: <% @post.tag_list.each do |tag| %>
+        <%= link_to tag, controller: :image_posts, tag: tag %>
+        <% end %>
+        </h5>
 <%= image_tag(@post.image,width: 400) %>
 <br/>
 <%= link_to("View all images", image_posts_path) %>
