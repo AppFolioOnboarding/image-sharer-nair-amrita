@@ -1,6 +1,25 @@
 import React, { Component } from 'react';
 
 class FeedbackForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      comments: ''
+    };
+  }
+
+  handleNameChange = (event) => {
+    this.setState({
+      name: event.target.value
+    });
+  }
+  handleCommentsChange = (event) => {
+    this.setState({
+      comments: event.target.value
+    });
+  }
+
   render() {
     return (
       <div className="container">
