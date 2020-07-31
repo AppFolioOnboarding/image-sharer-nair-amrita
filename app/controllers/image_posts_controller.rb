@@ -5,13 +5,17 @@ class ImagePostsController < ApplicationController
   end
 
   def index
-    @posts = ImagePost.all
-    render :index
+    if params[:tag].present?
+      @posts = ImagePost.tagged_with(params[:tag]).order(created_at: :desc) if params[:tag].present?
+    else
+      @posts = ImagePost.all
+      render :index
+    end
   end
 
   def show
     @post = ImagePost.find(params[:id])
-
+    @related_posts = @post.find_related_tags
     render :show
   end
 

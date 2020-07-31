@@ -21,7 +21,8 @@ class ImagePostControllerTest < ActionDispatch::IntegrationTest
   test 'create post with tags' do
     assert_difference 'ImagePost.count', 1 do
       file = fixture_file_upload(Rails.root.join('public', 'images.jpeg'), 'image/jpeg')
-      post image_posts_path, params: { image_post: { title: 'Image1', image: file, tag_list: 'tag_1 , tag_2' } }
+      post image_posts_path, params: { image_post: { title: 'Image1', image: file,
+                                                     tag_list: 'tag_1 , tag_2' } }
     end
 
     assert_redirected_to image_post_path(ImagePost.last.id)
@@ -36,7 +37,24 @@ class ImagePostControllerTest < ActionDispatch::IntegrationTest
                                     tag_list: 'tag_1, tag_2')
     get image_post_path(newest_post)
     assert_response :success
-    assert_select 'h5', text: 'Tags: tag_1, tag_2'
+    assert_select 'h5 a', 2 do |elements|
+      assert_equal 'tag_1', elements[0].text
+      assert_equal 'tag_2', elements[1].text
+    end
+  end
+
+  test 'filter post by a tag' do
+    file = fixture_file_upload(Rails.root.join('public', 'images.jpeg'), 'image/jpeg')
+    post1 = ImagePost.create!(title: 'Newest', created_at: Time.zone.now, image: file,
+                              tag_list: 'tag_1, tag_2')
+    post2 = ImagePost.create!(title: 'Newest', created_at: Time.zone.now, image: file,
+                              tag_list: 'tag_1, tag_3')
+    get image_posts_path, params: { tag: 'tag_1' }
+    assert_response :success
+    assert_select 'img', 2 do |elements|
+      assert_equal url_for(post2.image), elements[0].attributes['src'].value
+      assert_equal url_for(post1.image), elements[1].attributes['src'].value
+    end
   end
 
   test 'should show image' do

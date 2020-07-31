@@ -6,6 +6,7 @@ AllCops:
     - 'vendor/**/*'
     - 'node_modules/**/*'
     - 'bin/*'
+    - 'db/migrate/*.rb'
   TargetRubyVersion: 2.5
 
 Layout/IndentFirstArrayElement:
@@ -19,10 +20,6 @@ Layout/MultilineMethodCallIndentation:
 
 Metrics/LineLength:
   Max: 112  # Maximum line length from `rails new`
-
-Metrics:
-  Exclude:
-    - 'db/migrate/*.rb'
 
 Rails:
   Enabled: true

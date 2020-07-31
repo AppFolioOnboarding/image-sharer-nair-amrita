@@ -13,7 +13,8 @@ require 'open-uri'
   p "Downloading #{image_url}..."
   downloaded_file = URI.parse(image_url).open
   image_post.image.attach(io: downloaded_file, filename: 'foo.png')
+  image_post.tag_list.add('random')
   image_post.save
-  p "Created #{image_post.title} with id: #{image_post.id}"
+  p "Created #{image_post.title} with id: #{image_post.id} and tag #{image_post.tag_list} "
 end
 p "Created #{ImagePost.count} image posts"
