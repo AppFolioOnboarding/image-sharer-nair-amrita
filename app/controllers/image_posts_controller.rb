@@ -5,9 +5,12 @@ class ImagePostsController < ApplicationController
   end
 
   def index
-    @posts = ImagePost.all
-    @posts = ImagePost.tagged_with(params[:tag]).order(created_at: :desc) if params[:tag].present?
-    render :index
+    if params[:tag].present?
+      @posts = ImagePost.tagged_with(params[:tag]).order(created_at: :desc) if params[:tag].present?
+    else
+      @posts = ImagePost.all
+      render :index
+    end
   end
 
   def show
