@@ -18,6 +18,27 @@ class ImagePostControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'create post with tags' do
+    assert_difference 'ImagePost.count', 1 do
+      file = fixture_file_upload(Rails.root.join('public', 'images.jpeg'), 'image/jpeg')
+      post image_posts_path, params: { image_post: { title: 'Image1', image: file, tag_list: 'tag_1 , tag_2' } }
+    end
+
+    assert_redirected_to image_post_path(ImagePost.last.id)
+    assert_equal 2, ImagePost.last.tags.count
+    follow_redirect!
+    assert_response :success
+  end
+
+  test 'show post with 2 tags' do
+    file = fixture_file_upload(Rails.root.join('public', 'images.jpeg'), 'image/jpeg')
+    newest_post = ImagePost.create!(title: 'Newest', created_at: Time.zone.now, image: file,
+                                    tag_list: 'tag_1, tag_2')
+    get image_post_path(newest_post)
+    assert_response :success
+    assert_select 'h5', text: 'Tags: tag_1, tag_2'
+  end
+
   test 'should show image' do
     get image_posts_path(@post)
     assert_response :success

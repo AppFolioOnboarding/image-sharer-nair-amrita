@@ -29,6 +29,8 @@ node_modules
 /public/packs-test
 /node_modules
 .idea/
+
+#Ignore yarn files.
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
