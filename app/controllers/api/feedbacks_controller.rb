@@ -9,6 +9,8 @@ module Api
       end
     end
 
+    def new; end
+
     private
 
     def feedback_params
