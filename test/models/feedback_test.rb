@@ -18,5 +18,4 @@ class FeedbackTest < ActiveSupport::TestCase
       Feedback.create!(name: 'test', comments: '     ')
     end
   end
-
 end
