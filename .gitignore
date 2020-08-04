@@ -23,6 +23,9 @@
 # Ignore Byebug command history file.
 .byebug_history
 
+# Ignore Storage files.
+/storage
+
 # Don't check in node_modules
 node_modules
 /public/packs

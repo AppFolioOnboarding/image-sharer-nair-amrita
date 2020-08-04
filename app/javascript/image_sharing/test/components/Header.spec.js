@@ -6,7 +6,7 @@ import React from 'react';
 import Header from '../../components/Header';
 
 describe('<Header />', () => {
-  it('should render correctly', () => {
+  it('should render header correctly', () => {
     const wrapper = mount(<Header title="Title" />);
     const title = wrapper.find('header');
 
