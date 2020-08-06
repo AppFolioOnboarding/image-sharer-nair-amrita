@@ -10,5 +10,23 @@
     "import/resolver": {
       "webpack": {}
     }
-  }
+  },
+  "env": {
+    "jest": true
+  },
+  "rules": {
+    "jsx-a11y/label-has-for": [ "error", {
+      "required": {
+        "some": [ "nesting", "id"  ]
+      }
+    }]
+  },
+  "overrides": [
+    {
+      "files": "*.spec.js",
+      "rules": {
+        "no-unused-expressions": "off"
+      }
+    }
+  ]
 }
