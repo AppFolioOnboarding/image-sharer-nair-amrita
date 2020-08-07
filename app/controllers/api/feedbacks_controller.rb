@@ -1,5 +1,6 @@
 module Api
   class FeedbacksController < ApplicationController
+    skip_before_action :verify_authenticity_token
     def create
       feedback = Feedback.new(feedback_params)
       if feedback.save

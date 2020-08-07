@@ -1,4 +1,4 @@
-input[type=text], select, textarea {
+input[type=text]#name,select, textarea {
     width: 100%;
     padding: 12px;
     margin-top: 6px;
